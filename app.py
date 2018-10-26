@@ -32,17 +32,9 @@ app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
 # change channel_secret and channel_access_token from your line developer
-channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
-channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as environment variable.')
-    sys.exit(1)
-if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
-    sys.exit(1)
 
-line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+line_bot_api = LineBotApi('fWRIGcQ6SkFkXz+TuEnonpS4mujYRt8MlD1LcRbXw49Rv8JLveXFu6IiaZUFSoXh8JbnP89/BI9yTrLgmtC1iV8A4RkI03G0X06wv0FueRI9orJQNB+uz5TNyo+k7Nhh0DGgRhDWegvYOrstQRcvSwdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('02509786db25ccd7155839c9822cfeda')
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -94,7 +86,7 @@ def request_api(question):
         except:
             print "Connection timeout..."
             print "Retrying post request..."
-            time.Sleep(1)
+            time.sleep(1)
             continue
     
     response_data = json.JSONDecoder().decode(response_data)
